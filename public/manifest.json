@@ -1,0 +1,9 @@
+{
+  "name": "Mi Agenda",
+  "short_name": "Mi Agenda",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#3d3580",
+  "background_color": "#f9f8fc",
+  "icons": []
+}
