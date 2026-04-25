@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Routes, Route, NavLink, useNavigate } from 'react-router-dom'
 import { signOut } from '../lib/supabase'
 import Agenda from './Agenda'
@@ -6,13 +7,24 @@ import Cobros from './Cobros'
 import Estadisticas from './Estadisticas'
 import Notificaciones from './Notificaciones'
 import Calendario from './Calendario'
+import Tutorial from '../components/Tutorial'
 
 export default function Dashboard() {
   const navigate = useNavigate()
+  const [tutorialAbierto, setTutorialAbierto] = useState(false)
   const handleSignOut = async () => { await signOut(); navigate('/login') }
 
   return (
     <div className="app-shell">
+      {/* BOTÓN VER TUTORIAL */}
+      <button
+        className="btn-tutorial-flotante"
+        onClick={() => setTutorialAbierto(true)}
+        title="Ver tutorial"
+      >
+        ?
+      </button>
+
       <main className="app-content">
         <Routes>
           <Route path="/" element={<Agenda />} />
@@ -44,6 +56,8 @@ export default function Dashboard() {
           <span className="nav-icon">🔔</span><span className="nav-label">Alertas</span>
         </NavLink>
       </nav>
+
+      {tutorialAbierto && <Tutorial onClose={() => setTutorialAbierto(false)} />}
     </div>
   )
 }
